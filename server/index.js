@@ -1,7 +1,11 @@
 const express = require('express')
 const app = express()
 const port = 3000
+const http = require('http');
 app.use(express.json());
+const server = http.createServer(app);
+const io = new Server(server);
+
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
@@ -18,7 +22,6 @@ const data = {
 
 app.post('/clickReceive', function (req, res) {
     const input = req.body
-    console.log(req)
     if (input.color === 'blue') {
         data.blue++
     }
@@ -28,3 +31,8 @@ app.post('/clickReceive', function (req, res) {
     console.log(data)
     res.send('POST request to homepage')
 })
+
+
+io.on('connection', (socket) => {
+    console.log('a user connected');
+});

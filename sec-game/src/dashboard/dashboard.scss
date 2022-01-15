@@ -1,0 +1,22 @@
+
+
+.text-box-wrap {
+  display: flex;
+  justify-content: space-between;
+  .text-box {
+    width: 280px;
+    border-radius: 5%;
+    font-size: 50px;
+    margin-top: 25px;
+    padding: 25px;
+    text-align: center;
+    color: #fff;
+    &.orange {
+
+      background-color: #ff9559;
+    }
+    &.blue {
+      background-color: #007aff;
+    }
+  }
+}

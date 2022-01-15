@@ -1,0 +1,31 @@
+
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  .row-container  {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.btn {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  font-size: 50px;
+  color: #ffffff;
+  margin-top: 50px;
+  touch-action: none;
+  cursor: pointer;
+  border: none;
+  &:hover, &:active {
+    color: #000;
+  }
+  &.orange {
+    background-color: #ff9559;
+  }
+  &.blue {
+    background-color: #007aff;
+  }
+}
