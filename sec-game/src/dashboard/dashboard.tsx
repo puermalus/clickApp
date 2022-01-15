@@ -1,8 +1,28 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import './dashboard.scss';
-import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from "recharts";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
+import io from 'socket.io-client';
 
-const Dashboard:React.FC = () => {
+const host = "http://localhost:3002";
+
+const Dashboard: React.FC = () => {
+    const [messages, setMessages] = useState({ orange: 0, blue: 0 });
+    const socket = io(host, {
+        transports: ["websocket"]
+    });
+    socket.on("connect", () => {
+        console.log("Connected");
+        // socketRef.current = socket;
+    });
+    useEffect(() => {
+
+        socket.on("message", msg => {
+            setMessages(msg);
+        });
+
+
+    }, []);
+
     const data = [
         {
             name: 'Page A',
@@ -47,8 +67,8 @@ const Dashboard:React.FC = () => {
             amt: 2100,
         },
     ];
-    return(
-        <div className="App container" style={{marginTop: 40}}>
+    return (
+        <div className="App container" style={{ marginTop: 40 }}>
             <div className="chart">
                 <LineChart
                     width={500}
