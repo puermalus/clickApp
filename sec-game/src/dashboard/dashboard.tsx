@@ -16,6 +16,7 @@ const Dashboard: React.FC = () => {
     });
     useEffect(() => {
 
+
         socket.on("message", msg => {
             setMessages(msg);
         });
