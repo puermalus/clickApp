@@ -3,26 +3,31 @@ import './dashboard.scss';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
 import io from 'socket.io-client';
 
-const host = "http://localhost:3002";
+const host = "localhost:3001";
 
 const Dashboard: React.FC = () => {
     const [messages, setMessages] = useState({ orange: 0, blue: 0 });
-    const socket = io(host, {
-        transports: ["websocket"]
-    });
-    socket.on("connect", () => {
-        console.log("Connected");
-        // socketRef.current = socket;
-    });
+
+    const socket = io(host);
     useEffect(() => {
 
-
-        socket.on("message", msg => {
+        socket.on("clickReceiver", msg => {
             setMessages(msg);
         });
+        // socket.on("connection", (socket) => {
+        //     console.log(socket);
+        //     // socketRef.current = socket;
+        // });
+        // socket.on("message", msg => {
+        //     setMessages(msg);
+        // });
+        //
+        // socket.on("disconnect", msg => {
+        //     console.log(msg);
+        // })
 
 
-    }, []);
+    }, [socket]);
 
     const data = [
         {
@@ -93,10 +98,10 @@ const Dashboard: React.FC = () => {
             </div>
             <div className="text-box-wrap">
                 <div className="text-box orange">
-                    Orange
+                    {messages.orange}
                 </div>
                 <div className="text-box blue">
-                    Blue
+                    {messages.blue}
                 </div>
             </div>
 
