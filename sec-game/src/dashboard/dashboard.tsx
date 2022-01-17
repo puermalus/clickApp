@@ -15,19 +15,7 @@ const Dashboard: React.FC = () => {
 
         },
         {
-            name: '0,5',
-            orange: 0,
-            blue: 0,
-
-        },
-        {
             name: '1',
-            orange: 0,
-            blue: 0,
-
-        },
-        {
-            name: '1.5',
             orange: 0,
             blue: 0,
 
@@ -39,31 +27,13 @@ const Dashboard: React.FC = () => {
 
         },
         {
-            name: '2.5',
-            orange: 0,
-            blue: 0,
-
-        },
-        {
-            name: '2.5',
-            orange: 0,
-            blue: 0,
-
-        },
-        {
-            name: '3.5',
+            name: '3',
             orange: 0,
             blue: 0,
 
         },
         {
             name: '4',
-            orange: 0,
-            blue: 0,
-
-        },
-        {
-            name: '4.5',
             orange: 0,
             blue: 0,
 
@@ -77,6 +47,18 @@ const Dashboard: React.FC = () => {
 
     ]);
 
+    const parseData = (data) => {
+        let tempBlue0,tempBlue1,tempBlue2,tempBlue3, tempBlue4,tempBlue5 = 0;
+        let tempOrange0,tempOrange1,tempOrange2,tempOrange3, tempOrange4,tempOrange5 = 0;
+        // data.blue.forEach(item => {
+        //     switch (item) {
+        //         case 0:
+        //             tempBlue0++;
+        //
+        //     }
+        // })
+    }
+
 
     useEffect(() => {
         const socket = io(host);
@@ -84,76 +66,13 @@ const Dashboard: React.FC = () => {
             setMessages(msg);
         });
         socket.on("chart", msg => {
-            setChartData([
-                {
-                    name: '0',
-                    orange: 0,
-                    blue: 0,
-
-                },
-                {
-                    name: '0,5',
-                    orange: msg.orange,
-                    blue: msg.blue,
-
-                },
-                {
-                    name: '1',
-                    orange: 0,
-                    blue: 0,
-
-                },
-                {
-                    name: '1.5',
-                    orange: 0,
-                    blue: 0,
-
-                },
-                {
-                    name: '2',
-                    orange: 0,
-                    blue: 0,
-
-                },
-                {
-                    name: '2.5',
-                    orange: 0,
-                    blue: 0,
-
-                },
-                {
-                    name: '2.5',
-                    orange: 0,
-                    blue: 0,
-
-                },
-                {
-                    name: '3.5',
-                    orange: 0,
-                    blue: 0,
-
-                },
-                {
-                    name: '4',
-                    orange: 0,
-                    blue: 0,
-
-                },
-                {
-                    name: '4.5',
-                    orange: 0,
-                    blue: 0,
-
-                },
-                {
-                    name: '5',
-                    orange: 0,
-                    blue: 0,
-
-                },
-
-            ])
+            setChartData(msg);
         });
+        // return () => {
+        //     if (!socket) return;
+        //     socket.on("disconnect", msg => {
+        //     });
+        // };
         // socket.on("connection", (socket) => {
         //     console.log(socket);
         //     // socketRef.current = socket;
@@ -168,6 +87,7 @@ const Dashboard: React.FC = () => {
 
 
     });
+
     return (
         <div className="App container" style={{ marginTop: 40 }}>
             <div className="chart">
